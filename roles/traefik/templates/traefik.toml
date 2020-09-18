@@ -1,0 +1,21 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+  [entryPoints.websecure]
+    address = ":443"
+
+[providers.docker]
+  network = "discourse"
+
+[api]
+  dashboard = true
+
+[http.routers.api]
+  rule = "Host(`traefik.beta.parkourvienna.at`)"
+  service = "api@internal"
+
+[certificatesResolvers.default.acme]
+  email = "{{ acme_email }}"
+  storage = "/etc/traefik/acme/acme.json"
+  [certificatesResolvers.default.acme.tlsChallenge]

@@ -1,0 +1,4 @@
+---
+- name: create discourse docker network
+  docker_network:
+    name: discourse

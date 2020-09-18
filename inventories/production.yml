@@ -1,0 +1,13 @@
+all:
+  hosts:
+    beta.parkourvienna.at:
+      ansible_host: 51.15.48.30
+      ansible_user: root
+      ansible_python_interpreter: /usr/bin/python3
+  children:
+    production:
+      hosts:
+        beta.parkourvienna.at: {}
+    discourse:
+      hosts:
+        beta.parkourvienna.at: {}

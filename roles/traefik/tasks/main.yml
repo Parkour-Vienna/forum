@@ -1,0 +1,22 @@
+---
+- name: configure systemd unit
+  template:
+    src: "templates/traefik.service"
+    dest: "/etc/systemd/system/traefik.service"
+
+- name: create traefik directories
+  file:
+    path: "/var/traefik/acme"
+    state: directory
+
+- name: configure traefik
+  template:
+    src: "templates/traefik.toml"
+    dest: "/var/traefik/traefik.toml"
+  notify: restart_traefik
+
+- name: start traefik
+  systemd:
+    name: traefik
+    state: started
+    enabled: true

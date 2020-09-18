@@ -1,0 +1,17 @@
+---
+docker_install_compose: false
+postgres_dbpath: /var/postgres
+pip_install_packages:
+  - name: docker
+
+traefik_version: v2.1
+
+site_settings:
+  title: 'Parkour Vienna'
+  description: |
+    Community, Informationen und ein Bereich für professionelle Anfragen, rund um die Kunst der Fortbewegung. Parkour und Freerunning in Österreich/Wien.
+  short_description: |
+    Österreichs größte Parkour Community
+  contact_email: 'support@{{discourse.site_domain}}'
+  notification_email: 'noreply@{{discourse.site_domain}}'
+  site_contact_username: 'system'

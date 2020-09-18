@@ -1,0 +1,20 @@
+---
+- hosts: all
+  roles:
+    - name: base
+      tags: ["base"]
+    - name: geerlingguy.docker
+      tags: ["docker"]
+    - name: geerlingguy.pip
+      tags: ["pip"]
+
+- hosts: discourse
+  roles:
+    - name: network
+      tags: ["network","docker"]
+    - name: postgres
+      tags: ["postgres"]
+    - name: traefik
+      tags: ["traefik"]
+    - name: discourse
+      tags: ["discourse"]

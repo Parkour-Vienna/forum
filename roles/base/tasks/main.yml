@@ -1,0 +1,8 @@
+---
+- name: install untilities
+  dnf:
+    name:
+      - htop
+      - vim
+      - libselinux-python
+    state: installed

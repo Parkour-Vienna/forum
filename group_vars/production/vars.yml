@@ -1,0 +1,17 @@
+---
+
+postgres_password: "{{ vault_postgres_password }}"
+postgres_user: "discourse"
+postgres_db: "discourse"
+
+
+discourse:
+  site_domain: beta.parkourvienna.at
+  admin_emails: "{{ vault_admin_emails }}"
+  smtp:
+    address: smtp.eu.mailgun.org
+    username: pkv@mg.suess.wtf
+    password: "{{ vault_smtp_password }}"
+
+acme_email: "{{ vault_acme_email }}"
+

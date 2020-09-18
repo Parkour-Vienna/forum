@@ -1,0 +1,15 @@
+---
+
+- name: clone discourse_docker repo
+  git:
+    repo: 'https://github.com/discourse/discourse_docker'
+    dest: /var/discourse
+
+- name: configure app.yml
+  template:
+    src: 'templates/app.yml'
+    dest: '/var/discourse/containers/app.yml'
+  register: changed
+
+- name: rebuild container
+  shell: '/var/discourse/launcher rebuild app'
