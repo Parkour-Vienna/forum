@@ -1,0 +1,18 @@
+---
+systemd_service:
+  name: postgres
+  state: started
+  enabled: yes
+  docker:
+    container_name: postgres
+    image: docker.io/library/postgres:{{postgres_version}}
+    network: discourse
+    volume:
+      - host: "{{postgres_dbpath}}"
+        container: /var/lib/postgresql/data
+        mode: Z
+    env:
+      POSTGRES_DB: "{{postgres_db}}"
+      POSTGRES_USER: "{{postgres_user}}"
+      POSTGRES_PASSWORD: "{{postgres_password}}"
+    memory_limit: 1g

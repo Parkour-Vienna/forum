@@ -1,0 +1,14 @@
+---
+- name: create prometheus folder
+  file:
+    path: "/var/prometheus/data"
+    state: directory
+
+- name: configure prometheus
+  template:
+    src: "prometheus.yml"
+    dest: "/var/prometheus/prometheus.yml"
+
+
+- import_role:
+    name: cloudflight.systemd_service

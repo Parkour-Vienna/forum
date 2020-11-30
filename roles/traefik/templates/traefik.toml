@@ -1,19 +1,17 @@
 [entryPoints]
   [entryPoints.web]
     address = ":80"
+  [entryPoints.web.http]
+    [entryPoints.web.http.redirections]
+      [entryPoints.web.http.redirections.entryPoint]
+        to = "websecure"
+        scheme = "https"
 
   [entryPoints.websecure]
     address = ":443"
 
 [providers.docker]
   network = "discourse"
-
-[api]
-  dashboard = true
-
-[http.routers.api]
-  rule = "Host(`traefik.beta.parkourvienna.at`)"
-  service = "api@internal"
 
 [certificatesResolvers.default.acme]
   email = "{{ acme_email }}"

@@ -91,6 +91,9 @@ env:
   DISCOURSE_CONTACT_EMAIL: '{{ site_settings.contact_email }}'
   DISCOURSE_NOTIFICATION_EMAIL: '{{ site_settings.notification_email }}'
   DISCOURSE_SITE_CONTACT_USERNAME: '{{ site_settings.site_contact_username }}'
+  DISCOURSE_WIZARD_ENABLED: 'false'
+  DISCOURSE_BYPASS_WIZARD_CHECK: 'true'
+  DISCOURSE_LOGO_URL: 'https://www.parkour-vienna.at/community/uploads/monthly_2016_04/pkv3_header.png.4bea6c834093be4982e3244b821b3181.png'
 
 ## The Docker container is stateless; all data is stored in /shared
 volumes:
@@ -109,6 +112,12 @@ hooks:
         cd: $home/plugins
         cmd:
           - git clone https://github.com/discourse/docker_manager.git
+          - git clone https://github.com/paviliondev/discourse-news.git
+          - git clone https://github.com/paviliondev/discourse-locations.git
+          - git clone https://github.com/paviliondev/discourse-events.git
+          - git clone https://github.com/paviliondev/discourse-topic-previews.git
+          - git clone https://github.com/discourse/discourse-prometheus.git
+          - git clone https://github.com/Parkour-Vienna/discourse-pkv.git
 
 ## Any custom commands to run after building
 run:

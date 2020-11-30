@@ -1,0 +1,17 @@
+---
+systemd_service:
+  name: prometheus
+  state: started
+  enabled: yes
+  docker:
+    container_name: prometheus
+    image: docker.io/prom/prometheus:v2.23.0
+    network: discourse
+    volume:
+      - host: "/var/prometheus/data"
+        container: /var/lib/prometheus
+        mode: rw
+      - host: "/var/prometheus/prometheus.yml"
+        container: /etc/prometheus/prometheus.yml
+        mode: ro
+    memory_limit: 1g

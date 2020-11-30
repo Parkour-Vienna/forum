@@ -1,8 +1,13 @@
 ---
-- name: install untilities
+- name: install epel
+  dnf:
+    name:
+      - epel-release
+
+- name: install utilities
   dnf:
     name:
       - htop
       - vim
-      - libselinux-python
+      - python3-libselinux
     state: installed

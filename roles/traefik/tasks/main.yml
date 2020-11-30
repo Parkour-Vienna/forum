@@ -1,9 +1,4 @@
 ---
-- name: configure systemd unit
-  template:
-    src: "templates/traefik.service"
-    dest: "/etc/systemd/system/traefik.service"
-
 - name: create traefik directories
   file:
     path: "/var/traefik/acme"
@@ -15,8 +10,5 @@
     dest: "/var/traefik/traefik.toml"
   notify: restart_traefik
 
-- name: start traefik
-  systemd:
-    name: traefik
-    state: started
-    enabled: true
+- import_role:
+    name: cloudflight.systemd_service

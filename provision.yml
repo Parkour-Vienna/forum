@@ -7,11 +7,20 @@
       tags: ["docker"]
     - name: geerlingguy.pip
       tags: ["pip"]
+    - name: cloudalchemy.node-exporter
+      tags: ["monitoring","node-exporter"]
+    - name: network
+      tags: ["network","docker"]
+    - name: cadvisor
+      tags: ["monitoring","cadvisor"]
+
+- hosts: prometheus
+  roles:
+    - name: prometheus
+      tags: ["monitoring","prometheus"]
 
 - hosts: discourse
   roles:
-    - name: network
-      tags: ["network","docker"]
     - name: postgres
       tags: ["postgres"]
     - name: traefik

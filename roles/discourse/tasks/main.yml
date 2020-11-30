@@ -1,5 +1,10 @@
 ---
 
+- name: install git
+  dnf:
+    name: git
+    state: present
+
 - name: clone discourse_docker repo
   git:
     repo: 'https://github.com/discourse/discourse_docker'

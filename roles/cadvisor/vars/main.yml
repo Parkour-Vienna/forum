@@ -1,0 +1,24 @@
+---
+systemd_service:
+  name: cadvisior
+  state: started
+  enabled: yes
+  docker:
+    container_name: cadvisor
+    image: gcr.io/cadvisor/cadvisor:v0.36.0
+    network: discourse
+    volume:
+      - host: "/"
+        container: /rootfs
+        mode: ro
+      - host: "/var/run"
+        container: /var/run
+        mode: ro
+      - host: "/var/lib/docker"
+        container: /var/lib/docker
+        mode: ro
+      - host: "/dev/disk"
+        container: /dev/disk
+        mode: ro
+    raw_args: '--privileged --device=/dev/kmsg'
+    memory_limit: 258m

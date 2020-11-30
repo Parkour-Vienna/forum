@@ -4,25 +4,5 @@
     path: "{{ postgres_dbpath }}"
     state: directory
 
-- name: configure systemd unit
-  template:
-    src: "templates/postgres.service.j2"
-    dest: "/etc/systemd/system/postgres.service"
-  notify: restart_pg
-
-- name: create postgres env folder
-  file:
-    path: "/etc/systemd/system/postgres.service.d"
-    state: directory
-
-- name: configure systemd env
-  template:
-    src: "templates/postgres.env.conf.j2"
-    dest: "/etc/systemd/system/postgres.service.d/env.conf"
-  notify: restart_pg
-
-- name: ensure postgres is running
-  systemd:
-    name: postgres
-    state: started
-    enabled: true
+- import_role:
+    name: cloudflight.systemd_service

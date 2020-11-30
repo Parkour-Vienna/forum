@@ -1,0 +1,25 @@
+---
+systemd_service:
+  name: traefik
+  state: started
+  enabled: yes
+  docker:
+    container_name: traefik
+    image: docker.io/library/traefik:{{traefik_version}}
+    network: discourse
+    expose_port:
+      - host: 80
+        container: 80
+      - host: 443
+        container: 443
+    volume:
+      - host: "/var/traefik/traefik.toml"
+        container: /etc/traefik/traefik.toml
+        mode: ro
+      - host: "/var/traefik/acme"
+        container: /etc/traefik/acme
+        mode: rw
+      - host: "/var/run/docker.sock"
+        container: /var/run/docker.sock
+        mode: rw
+    memory_limit: 100m

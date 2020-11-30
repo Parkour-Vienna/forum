@@ -5,16 +5,12 @@ postgres_user: "discourse"
 postgres_db: "discourse"
 
 
-# ssh pw login is disabled, this is only useful for vnc access
-root_pw: gYp9bivv3LuL6oa6g3COSwummZktcdME
-
-
 discourse:
-  site_domain: parkourvienna.at
+  site_domain: beta.parkourvienna.at
   admin_emails: "{{ vault_admin_emails }}"
   smtp:
     address: smtp.eu.mailgun.org
-    username: pkv@mg.parkourvienna.at
+    username: pkv@mg.suess.wtf
     password: "{{ vault_smtp_password }}"
 
 acme_email: "{{ vault_acme_email }}"
