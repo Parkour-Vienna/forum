@@ -1,0 +1,10 @@
+---
+- name: create grafana folder
+  file:
+    path: "/var/grafana/data"
+    state: directory
+    owner: 472
+    group: 0
+
+- import_role:
+    name: cloudflight.systemd_service

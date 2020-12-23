@@ -5,9 +5,8 @@ postgres_user: "discourse"
 postgres_db: "discourse"
 
 
-# ssh pw login is disabled, this is only useful for vnc access
-root_pw: gYp9bivv3LuL6oa6g3COSwummZktcdME
-
+grafana:
+  host: "metrics.parkourvienna.at"
 
 discourse:
   site_domain: parkourvienna.at

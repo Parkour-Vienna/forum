@@ -1,0 +1,18 @@
+---
+systemd_service:
+  name: grafana
+  state: started
+  enabled: yes
+  docker:
+    container_name: grafana
+    image: docker.io/grafana/grafana:7.3.4
+    network: discourse
+    labels:
+      - 'traefik.http.routers.grafana.rule=Host(`{{ grafana.host }}`)'
+      - 'traefik.http.routers.grafana.tls=true'
+      - 'traefik.http.routers.grafana.tls.certresolver=default'
+    volume:
+      - host: "/var/grafana/data"
+        container: /var/lib/grafana
+        mode: rw
+    memory_limit: 1g

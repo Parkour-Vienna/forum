@@ -1,11 +1,6 @@
 ---
 scrape_configs:
   - job_name: 'prometheus'
-
-    # Override the global default and scrape targets from this job every 5
-    # seconds.
-    scrape_interval: 5s
-
     static_configs:
       - targets: ['localhost:9090']
 
@@ -14,4 +9,4 @@ scrape_configs:
       - targets: ['cadvisor:8080']
   - job_name: 'discourse'
     static_configs:
-      - targets: ['discourse:80']
+      - targets: ['app:80']

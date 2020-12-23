@@ -19,6 +19,11 @@
     - name: prometheus
       tags: ["monitoring","prometheus"]
 
+- hosts: grafana
+  roles:
+    - name: grafana
+      tags: ["monitoring","grafana"]
+
 - hosts: discourse
   roles:
     - name: postgres

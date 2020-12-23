@@ -15,3 +15,6 @@ all:
     prometheus:
       hosts:
         parkourvienna.at: {}
+    grafana:
+      hosts:
+        parkourvienna.at: {}
