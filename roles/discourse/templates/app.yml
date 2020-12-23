@@ -25,10 +25,13 @@ expose:
 
 docker_args:
   - "--net discourse"
-  - "--label traefik.http.routers.app.rule=Host(`{{ discourse.site_domain }}`)"
+  - '--label traefik.http.routers.app.rule=Host(`{{ discourse.site_domain }}`,`www.{{ discourse.site_domain }}`)'
   - "--label traefik.http.routers.app.tls=true"
   - "--label traefik.http.routers.app.tls.certresolver=default"
+  - '--label traefik.http.routers.app.middlewares=wwwredirect@docker'
   - "--label traefik.http.services.app.loadbalancer.server.port=80"
+  - '--label traefik.http.middlewares.wwwredirect.redirectregex.regex=^http(s?)://www.parkourvienna.at/(.*)'
+  - '--label traefik.http.middlewares.wwwredirect.redirectregex.replacement=https://parkourvienna.at/${2}'
 params:
   db_default_text_search_config: "pg_catalog.german"
 
@@ -93,7 +96,6 @@ env:
   DISCOURSE_SITE_CONTACT_USERNAME: '{{ site_settings.site_contact_username }}'
   DISCOURSE_WIZARD_ENABLED: 'false'
   DISCOURSE_BYPASS_WIZARD_CHECK: 'true'
-  DISCOURSE_LOGO_URL: 'https://www.parkour-vienna.at/community/uploads/monthly_2016_04/pkv3_header.png.4bea6c834093be4982e3244b821b3181.png'
 
 ## The Docker container is stateless; all data is stored in /shared
 volumes:

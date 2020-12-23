@@ -14,5 +14,5 @@ site_settings:
   short_description: |-
     Österreichs größte Parkour Community
   contact_email: 'support@{{discourse.site_domain}}'
-  notification_email: 'noreply@{{discourse.site_domain}}'
+  notification_email: 'forum@{{discourse.site_domain}}'
   site_contact_username: 'system'
