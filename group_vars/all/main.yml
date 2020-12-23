@@ -9,9 +9,9 @@ traefik_version: v2.3
 
 site_settings:
   title: 'Parkour Vienna'
-  description: |
+  description: |-
     Community, Informationen und ein Bereich für professionelle Anfragen, rund um die Kunst der Fortbewegung. Parkour und Freerunning in Österreich/Wien.
-  short_description: |
+  short_description: |-
     Österreichs größte Parkour Community
   contact_email: 'support@{{discourse.site_domain}}'
   notification_email: 'noreply@{{discourse.site_domain}}'
