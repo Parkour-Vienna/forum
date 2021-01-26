@@ -1,7 +1,7 @@
 ---
 docker_install_compose: false
 postgres_dbpath: /var/postgres
-postgres_version: "12-alpine"
+postgres_version: "13"
 pip_install_packages:
   - name: docker
 

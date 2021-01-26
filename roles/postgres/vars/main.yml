@@ -5,10 +5,10 @@ systemd_service:
   enabled: yes
   docker:
     container_name: postgres
-    image: docker.io/library/postgres:{{postgres_version}}
+    image: docker.io/library/postgres:{{postgres_version}}-alpine
     network: discourse
     volume:
-      - host: "{{postgres_dbpath}}"
+      - host: "{{postgres_dbpath}}/{{postgres_version}}/data"
         container: /var/lib/postgresql/data
         mode: Z
     env:

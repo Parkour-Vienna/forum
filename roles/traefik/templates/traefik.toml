@@ -13,6 +13,11 @@
 [providers.docker]
   network = "discourse"
 
+[http.middlewares]
+  [http.middlewares.www-redirect.redirectRegex]
+    regex = "^http(s?)://www.{{discourse.site_domain}}/(.*)"
+    replacement = "https://{{discourse.site_domain}}/${1}"  
+
 [certificatesResolvers.default.acme]
   email = "{{ acme_email }}"
   storage = "/etc/traefik/acme/acme.json"
