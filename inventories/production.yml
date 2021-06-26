@@ -1,7 +1,7 @@
 all:
   hosts:
     parkourvienna.at:
-      ansible_host: 152.89.244.75 
+      ansible_host: 152.89.244.75
       ansible_user: root
       ansible_port: 2020
       ansible_python_interpreter: /usr/bin/python3
@@ -16,5 +16,8 @@ all:
       hosts:
         parkourvienna.at: {}
     grafana:
+      hosts:
+        parkourvienna.at: {}
+    nextcloud:
       hosts:
         parkourvienna.at: {}

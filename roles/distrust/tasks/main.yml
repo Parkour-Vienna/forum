@@ -1,0 +1,13 @@
+---
+- name: create distrust folder
+  file:
+    path: '/var/distrust'
+    state: directory
+
+- name: configure distrust
+  template:
+    src: 'files/distrust.yml.j2'
+    dest: '/var/distrust/distrust.yml'
+
+- import_role:
+    name: cloudflight.systemd_service

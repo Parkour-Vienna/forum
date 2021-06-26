@@ -1,20 +1,35 @@
 ---
-
-postgres_password: "{{ vault_postgres_password }}"
-postgres_user: "discourse"
-postgres_db: "discourse"
-
+postgres_password: '{{ vault_postgres_password }}'
+postgres_user: 'discourse'
+postgres_db: 'discourse'
 
 grafana:
-  host: "metrics.parkourvienna.at"
+  host: 'metrics.parkourvienna.at'
 
 discourse:
   site_domain: parkourvienna.at
-  admin_emails: "{{ vault_admin_emails }}"
+  admin_emails: '{{ vault_admin_emails }}'
   smtp:
     address: smtp.eu.mailgun.org
     username: pkv@mg.parkourvienna.at
-    password: "{{ vault_smtp_password }}"
+    password: '{{ vault_smtp_password }}'
 
-acme_email: "{{ vault_acme_email }}"
+nextcloud:
+  host: 'drive.parkourvienna.at'
 
+distrust:
+  host: 'auth.parkourvienna.at'
+  server: 'https://{{ discourse.site_domain }}'
+  secret: '{{ vault_distrust_secret }}'
+  oidc:
+    secret: '{{ vault_distrust_oidc_secret }}'
+    privateKey: '{{ vault_distrust_oidc_privateKey }}'
+  clients:
+    nextcloud:
+      secret: '{{ vault_distrust_nextcloud_secret }}'
+      allowGroups:
+        - team
+      redirectURIs:
+        - 'https://{{ nextcloud.host }}/apps/oidc_login/oidc'
+
+acme_email: '{{ vault_acme_email }}'

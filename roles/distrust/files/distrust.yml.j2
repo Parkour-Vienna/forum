@@ -1,0 +1,13 @@
+---
+listenAddr: 0.0.0.0:3000
+log:
+  level: trace
+discourse:
+  server: {{ distrust.server }}
+  secret: {{ distrust.secret }}
+oidc:
+  secret: '{{ distrust.oidc.secret }}'
+  privateKey: |
+    {{ distrust.oidc.privateKey | indent(4) }}
+clients:
+  {{ distrust.clients | to_yaml | indent(2) }}

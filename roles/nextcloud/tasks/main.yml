@@ -1,0 +1,11 @@
+---
+- name: create nextcloud folder
+  file:
+    path: '/var/nextcloud/{{ item }}'
+    state: directory
+  with_items:
+    - data
+    - config
+
+- import_role:
+    name: cloudflight.systemd_service

@@ -1,0 +1,19 @@
+---
+systemd_service:
+  name: distrust
+  state: started
+  enabled: yes
+  docker:
+    container_name: distrust
+    image: ghcr.io/parkour-vienna/distrust:0.0.4
+    network: discourse
+    labels:
+      - 'traefik.http.routers.distrust.rule=Host(`{{ distrust.host }}`)'
+      - 'traefik.http.routers.distrust.tls=true'
+      - 'traefik.http.routers.distrust.tls.certresolver=default'
+      - 'traefik.http.services.distrust.loadbalancer.server.port=3000'
+    volume:
+      - host: '/var/distrust/distrust.yml'
+        container: /distrust.yml
+        mode: rw
+    memory_limit: 16m

@@ -114,9 +114,8 @@ hooks:
         cd: $home/plugins
         cmd:
           - git clone https://github.com/discourse/docker_manager.git
-          - git clone https://github.com/paviliondev/discourse-news.git
-          - git clone https://github.com/paviliondev/discourse-locations.git
-          - git clone https://github.com/paviliondev/discourse-events.git
+          - git clone https://github.com/Parkour-Vienna/discourse-locations.git
+          - git clone https://github.com/Parkour-Vienna/discourse-events.git
           - git clone https://github.com/paviliondev/discourse-topic-previews.git
           - git clone https://github.com/discourse/discourse-prometheus.git
           - git clone https://github.com/Parkour-Vienna/discourse-pkv.git

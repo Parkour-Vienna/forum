@@ -2,33 +2,40 @@
 - hosts: all
   roles:
     - name: base
-      tags: ["base"]
+      tags: ['base']
     - name: geerlingguy.docker
-      tags: ["docker"]
+      tags: ['docker']
     - name: geerlingguy.pip
-      tags: ["pip"]
+      tags: ['pip']
     - name: cloudalchemy.node-exporter
-      tags: ["monitoring","node-exporter"]
+      tags: ['monitoring', 'node-exporter']
     - name: network
-      tags: ["network","docker"]
+      tags: ['network', 'docker']
     - name: cadvisor
-      tags: ["monitoring","cadvisor"]
+      tags: ['monitoring', 'cadvisor']
 
 - hosts: prometheus
   roles:
     - name: prometheus
-      tags: ["monitoring","prometheus"]
+      tags: ['monitoring', 'prometheus']
 
 - hosts: grafana
   roles:
     - name: grafana
-      tags: ["monitoring","grafana"]
+      tags: ['monitoring', 'grafana']
 
 - hosts: discourse
   roles:
     - name: postgres
-      tags: ["postgres"]
+      tags: ['postgres']
     - name: traefik
-      tags: ["traefik"]
+      tags: ['traefik']
     - name: discourse
-      tags: ["discourse"]
+      tags: ['discourse']
+    - name: distrust
+      tags: ['auth']
+
+- hosts: nextcloud
+  roles:
+    - name: nextcloud
+      tags: ['nextcloud']

@@ -1,0 +1,21 @@
+---
+systemd_service:
+  name: nextcloud
+  state: started
+  enabled: yes
+  docker:
+    container_name: nextcloud
+    image: docker.io/library/nextcloud@sha256:4eccebb857601b65384f7bcb9b7a7ac0acebd04aa97ae0a08ddd589ea3b917e5
+    network: discourse
+    labels:
+      - 'traefik.http.routers.nextcloud.rule=Host(`{{ nextcloud.host }}`)'
+      - 'traefik.http.routers.nextcloud.tls=true'
+      - 'traefik.http.routers.nextcloud.tls.certresolver=default'
+    volume:
+      - host: '/var/nextcloud/config'
+        container: /var/www/html
+        mode: rw
+      - host: '/var/nextcloud/data'
+        container: /data
+        mode: rw
+    memory_limit: 512m
