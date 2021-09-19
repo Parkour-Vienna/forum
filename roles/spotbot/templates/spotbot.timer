@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Spotbot
+
+[Timer]
+OnCalendar=Sun 12:45,50,55
+OnCalendar=Sun 13:00,05,10
+
+[Install]
+WantedBy=timers.target

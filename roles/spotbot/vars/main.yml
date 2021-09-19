@@ -1,0 +1,13 @@
+---
+systemd_service:
+  name: spotbot
+  state: stopped
+  docker:
+    container_name: spotbot
+    image: ghcr.io/parkour-vienna/spotbot:latest
+    network: discourse
+    env:
+      TZ: Europe/Vienna
+      SPOTBOT_URL: '{{ vault_spotbot_url }}'
+      SPOTBOT_TOKEN: '{{ vault_spotbot_token }}'
+      SPOTBOT_USERNAME: '{{ vault_spotbot_username }}'

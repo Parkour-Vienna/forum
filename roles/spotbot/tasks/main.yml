@@ -1,0 +1,14 @@
+---
+- import_role:
+    name: cloudflight.systemd_service
+
+- name: copy timer
+  template:
+    src: spotbot.timer
+    dest: /etc/systemd/system/spotbot.timer
+
+- name: enable and start timer
+  service:
+    name: spotbot.timer
+    state: started
+    enabled: true
