@@ -1,9 +1,4 @@
 ---
-- name: install epel
-  dnf:
-    name:
-      - epel-release
-
 - name: install utilities
   dnf:
     name:

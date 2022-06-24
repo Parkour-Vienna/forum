@@ -116,7 +116,7 @@ hooks:
           - git clone https://github.com/discourse/docker_manager.git
           - git clone https://github.com/Parkour-Vienna/discourse-locations.git
           - git clone https://github.com/Parkour-Vienna/discourse-events.git
-          - git clone https://github.com/paviliondev/discourse-topic-previews.git
+          - git clone https://github.com/merefield/discourse-topic-previews.git -b "theme_sidecar"
           - git clone https://github.com/discourse/discourse-prometheus.git
           - git clone https://github.com/Parkour-Vienna/discourse-pkv.git
 
