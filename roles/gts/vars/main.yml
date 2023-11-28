@@ -1,0 +1,38 @@
+---
+systemd_service:
+  name: gotosocial
+  state: started
+  enabled: yes
+  docker:
+    container_name: gotosocial
+    image: ghcr.io/parkour-vienna/gotosocial:snapshot
+    network: '{{ docker_network_name }}'
+    labels:
+      - 'traefik.http.routers.gotosocial.rule=Host(`{{ gotosocial.host }}`) || Host(`{{ gotosocial.domain }}`) && Path(`/.well-known/webfinger`,`/.well-known/nodeinfo`)'
+      - 'traefik.http.routers.gotosocial.tls=true'
+      - 'traefik.http.routers.gotosocial.tls.certresolver=default'
+      - 'traefik.http.services.gotosocial.loadbalancer.server.port=8080'
+    volume:
+      - host: "/srv/gts/data"
+        container: /data
+        mode: rw
+    env:
+      GTS_HOST: '{{ gotosocial.host }}'
+      GTS_ACCOUNT_DOMAIN: '{{ gotosocial.domain }}'
+      GTS_APPLICATION_NAME: '{{ gotosocial.domain }}'
+      GTS_DB_TYPE: 'postgres'
+      GTS_DB_ADDRESS: postgres
+      GTS_DB_USER: gotosocial
+      GTS_DB_DATABASE: gotosocial
+      GTS_DB_PASSWORD: '{{ gotosocial.db_password }}'
+      GTS_STORAGE_LOCAL_BASE_PATH: /data
+      GTS_TRUSTED_PROXIES: '0.0.0.0/0'
+      GTS_ACCOUNTS_ALLOW_CUSTOM_CSS: 'true'
+      GTS_OIDC_CLIENT_SECRET: '{{ gotosocial.oidc_secret }}'
+      GTS_OIDC_ENABLED: 'true'
+      GTS_OIDC_IDP_NAME: 'parkourvienna.at'
+      GTS_OIDC_ISSUER: 'https://auth.parkourvienna.at/oauth2'
+      GTS_OIDC_CLIENT_ID: 'social.parkour.wien'
+      GTS_OIDC_SCOPES: "openid,profile,email"
+      GTS_MEDIA_VIDEO_MAX_SIZE: "314572800"
+    memory_limit: 1g

@@ -1,0 +1,10 @@
+---
+- name: create gts folder
+  file:
+    path: "/srv/gts/data"
+    state: directory
+    owner: 1000
+    group: 1000
+
+- import_role:
+    name: cloudflight.systemd_service
