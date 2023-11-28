@@ -3,12 +3,18 @@ postgres_password: '{{ vault_postgres_password }}'
 postgres_user: 'discourse'
 postgres_db: 'discourse'
 
-grafana:
-  host: 'metrics.parkourvienna.at'
+gotosocial:
+  host: 'social.parkour.wien'
+  domain: 'parkour.wien'
+  db_password: '{{ vault_gts_db_password }}'
+  oidc_secret: '3DNCOJkwfEV9pWK3qOgVmTkZLvHeILvv'
 
 discourse:
   site_domain: parkourvienna.at
   admin_emails: '{{ vault_admin_emails }}'
+  database:
+    user: 'discourse'
+    password: '{{ vault_discourse_db_password }}'
   smtp:
     address: smtp.eu.mailgun.org
     username: pkv@mg.parkourvienna.at
@@ -31,5 +37,10 @@ distrust:
         - team
       redirectURIs:
         - 'https://{{ nextcloud.host }}/apps/oidc_login/oidc'
+    social.parkour.wien:
+      allowGroups:
+        - team
+      redirectURIs: ['https://social.parkour.wien/auth/callback']
+      secret: '{{ vault_distrust_gts_secret }}'
 
 acme_email: '{{ vault_acme_email }}'

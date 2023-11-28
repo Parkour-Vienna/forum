@@ -1,13 +1,17 @@
 ---
 - name: create traefik directories
   file:
-    path: "/var/traefik/acme"
+    path: "{{item}}"
     state: directory
+  with_items:
+    - "/var/traefik/"
+    - "/var/traefik/acme"
+    - "/var/traefik/conf.d"
 
 - name: configure traefik
   template:
-    src: "templates/traefik.toml"
-    dest: "/var/traefik/traefik.toml"
+    src: "templates/traefik.yaml"
+    dest: "/var/traefik/traefik.yaml"
   notify: restart_traefik
 
 - import_role:

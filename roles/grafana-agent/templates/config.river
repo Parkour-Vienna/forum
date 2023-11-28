@@ -1,0 +1,66 @@
+module.git "grafana_cloud" {
+  repository = "https://github.com/grafana/agent-modules.git"
+  path = "modules/grafana-cloud/autoconfigure/module.river"
+  revision = "main"
+  pull_frequency = "0s"
+  arguments {
+    stack_name = "parkourvienna"
+    token = env("GRAFANA_CLOUD_TOKEN")
+  }
+}
+
+prometheus.exporter.unix "node" {
+}
+
+prometheus.scrape "linux_node" {
+  targets = discovery.relabel.relabel_targets.output
+  forward_to = [
+    module.git.grafana_cloud.exports.metrics_receiver,
+  ]
+}
+
+
+loki.relabel "journal" {
+  forward_to = []
+
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+  rule {
+    source_labels = ["__journal__boot_id"]
+    target_label  = "boot_id"
+  }
+  rule {
+    source_labels = ["__journal__transport"]
+    target_label  = "transport"
+  }
+  rule {
+    source_labels = ["__journal_priority_keyword"]
+    target_label  = "level"
+  }
+  rule {
+    source_labels = ["__journal__hostname"]
+    target_label  = "instance"
+  }
+}
+
+loki.source.journal "read" {
+  forward_to = [
+    module.git.grafana_cloud.exports.logs_receiver,
+  ]
+  relabel_rules = loki.relabel.journal.rules
+  labels = {
+    "job" = "integrations/node_exporter",
+  }
+}
+
+discovery.relabel "relabel_targets" {
+  rule {
+    target_label = "job"
+    replacement = "integrations/node_exporter"
+    source_labels = [
+    ]
+  }
+  targets = prometheus.exporter.unix.node.targets
+}

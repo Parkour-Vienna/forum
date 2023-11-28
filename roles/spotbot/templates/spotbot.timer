@@ -2,8 +2,11 @@
 Description=Run Spotbot
 
 [Timer]
-OnCalendar=Sun 12:45,50,55
-OnCalendar=Sun 13:00,05,10,15,20,25,30
-
+OnCalendar=Sun 12:00,15,30,45,50,55 Europe/Vienna
+OnCalendar=Sun 13:00,05,10,15,20,25,30 Europe/Vienna
+OnCalendar=Mon 06:00 Europe/Vienna
+OnCalendar=Tue 16,17,18,19:00,10,20,30,40,50 Europe/Vienna
+OnCalendar=Wed 04:00 Europe/Vienna
+OnCalendar=Fri 04:00 Europe/Vienna
 [Install]
 WantedBy=timers.target

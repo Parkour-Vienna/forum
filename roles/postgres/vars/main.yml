@@ -6,13 +6,11 @@ systemd_service:
   docker:
     container_name: postgres
     image: docker.io/library/postgres:{{postgres_version}}-alpine
-    network: discourse
+    network: '{{ docker_network_name }}'
     volume:
       - host: "{{postgres_dbpath}}/{{postgres_version}}/data"
         container: /var/lib/postgresql/data
         mode: Z
     env:
-      POSTGRES_DB: "{{postgres_db}}"
-      POSTGRES_USER: "{{postgres_user}}"
       POSTGRES_PASSWORD: "{{postgres_password}}"
     memory_limit: 1g

@@ -1,4 +1,4 @@
 ---
-- name: create discourse docker network
+- name: 'create {{ docker_network_name }} docker network'
   docker_network:
-    name: discourse
+    name: '{{ docker_network_name }}'

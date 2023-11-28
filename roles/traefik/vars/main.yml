@@ -6,18 +6,17 @@ systemd_service:
   docker:
     container_name: traefik
     image: docker.io/library/traefik:{{traefik_version}}
-    network: discourse
+    network: '{{ docker_network_name }}'
     expose_port:
       - host: 80
         container: 80
       - host: 443
         container: 443
+      - host: 8080
+        container: 8080
     volume:
-      - host: "/var/traefik/traefik.toml"
-        container: /etc/traefik/traefik.toml
-        mode: ro
-      - host: "/var/traefik/acme"
-        container: /etc/traefik/acme
+      - host: "/var/traefik/"
+        container: /etc/traefik/
         mode: rw
       - host: "/var/run/docker.sock"
         container: /var/run/docker.sock

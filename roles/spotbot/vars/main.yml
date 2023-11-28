@@ -5,7 +5,7 @@ systemd_service:
   docker:
     container_name: spotbot
     image: ghcr.io/parkour-vienna/spotbot:latest
-    network: discourse
+    network: "{{docker_network_name}}"
     env:
       TZ: Europe/Vienna
       SPOTBOT_URL: '{{ vault_spotbot_url }}'

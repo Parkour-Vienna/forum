@@ -6,7 +6,7 @@ systemd_service:
   docker:
     container_name: nextcloud
     image: docker.io/library/nextcloud@sha256:4eccebb857601b65384f7bcb9b7a7ac0acebd04aa97ae0a08ddd589ea3b917e5
-    network: discourse
+    network: "{{docker_network_name}}"
     labels:
       - 'traefik.http.routers.nextcloud.rule=Host(`{{ nextcloud.host }}`)'
       - 'traefik.http.routers.nextcloud.tls=true'

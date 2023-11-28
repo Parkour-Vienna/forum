@@ -1,0 +1,31 @@
+---
+- name: Add repository
+  ansible.builtin.yum_repository:
+    name: grafana
+    description: Grafana RPMs
+    baseurl: https://rpm.grafana.com
+    gpgkey: https://rpm.grafana.com/gpg.key
+
+- name: install grafana agent flow
+  ansible.builtin.dnf:
+    name: grafana-agent-flow
+    state: present
+
+- name: set agent credentials
+  ansible.builtin.lineinfile:
+    path: /etc/sysconfig/grafana-agent-flow
+    regexp: '^GRAFANA_CLOUD_TOKEN='
+    line: "GRAFANA_CLOUD_TOKEN={{vault_grafana_cloud_token}}"
+  notify: restart grafana-agent-flow
+
+- name: template config file
+  template:
+    src: "templates/config.river"
+    dest: "/etc/grafana-agent-flow.river"
+  notify: restart grafana-agent-flow
+
+- name: enable grafana-agent-flow
+  systemd:
+    name: grafana-agent-flow
+    state: started
+    enabled: true

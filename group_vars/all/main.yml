@@ -1,11 +1,12 @@
 ---
-docker_install_compose: false
-postgres_dbpath: /var/postgres
-postgres_version: "13"
+postgres_dbpath: /srv/postgres
+postgres_version: "16"
 pip_install_packages:
   - name: docker
 
-traefik_version: v2.3
+traefik_version: v2.10.5
+
+docker_network_name: 'apps'
 
 site_settings:
   title: 'Parkour Vienna'
