@@ -30,8 +30,8 @@ docker_args:
   - "--label traefik.http.routers.app.tls.certresolver=default"
   - '--label traefik.http.routers.app.middlewares=wwwredirect@docker'
   - "--label traefik.http.services.app.loadbalancer.server.port=80"
-  - '--label traefik.http.middlewares.wwwredirect.redirectregex.regex=^http(s?)://www.parkourvienna.at/(.*)'
-  - '--label traefik.http.middlewares.wwwredirect.redirectregex.replacement=https://parkourvienna.at/${2}'
+  - '--label traefik.http.middlewares.wwwredirect.redirectregex.regex=^http(s?)://www.parkour.wien/(.*)'
+  - '--label traefik.http.middlewares.wwwredirect.redirectregex.replacement=https://parkour.wien/${2}'
 params:
   db_default_text_search_config: "pg_catalog.german"
 

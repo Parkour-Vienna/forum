@@ -30,8 +30,8 @@ systemd_service:
       GTS_ACCOUNTS_ALLOW_CUSTOM_CSS: 'true'
       GTS_OIDC_CLIENT_SECRET: '{{ gotosocial.oidc_secret }}'
       GTS_OIDC_ENABLED: 'true'
-      GTS_OIDC_IDP_NAME: 'parkourvienna.at'
-      GTS_OIDC_ISSUER: 'https://auth.parkourvienna.at/oauth2'
+      GTS_OIDC_IDP_NAME: 'parkour.wien'
+      GTS_OIDC_ISSUER: 'https://auth.parkour.wien/oauth2'
       GTS_OIDC_CLIENT_ID: 'social.parkour.wien'
       GTS_OIDC_SCOPES: "openid,profile,email"
       GTS_MEDIA_VIDEO_MAX_SIZE: "314572800"

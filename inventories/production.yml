@@ -1,16 +1,16 @@
 all:
   hosts:
-    parkourvienna.at:
+    parkour.wien:
       ansible_host: 46.232.248.161
       ansible_user: root
       ansible_python_interpreter: /usr/bin/python3
   children:
     production:
       hosts:
-        parkourvienna.at: {}
+        parkour.wien: {}
     infrastructure:
       hosts:
-        parkourvienna.at: {}
+        parkour.wien: {}
     apps:
       hosts:
-        parkourvienna.at: {}
+        parkour.wien: {}
