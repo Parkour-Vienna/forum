@@ -10,21 +10,21 @@ gotosocial:
   oidc_secret: '3DNCOJkwfEV9pWK3qOgVmTkZLvHeILvv'
 
 discourse:
-  site_domain: parkourvienna.at
+  site_domain: parkour.wien
   admin_emails: '{{ vault_admin_emails }}'
   database:
     user: 'discourse'
     password: '{{ vault_discourse_db_password }}'
   smtp:
     address: smtp.eu.mailgun.org
-    username: pkv@mg.parkourvienna.at
+    username: pkv@mg.parkour.wien
     password: '{{ vault_smtp_password }}'
 
 nextcloud:
-  host: 'drive.parkourvienna.at'
+  host: 'drive.parkour.wien'
 
 distrust:
-  host: 'auth.parkourvienna.at'
+  host: 'auth.parkour.wien'
   server: 'https://{{ discourse.site_domain }}'
   secret: '{{ vault_distrust_secret }}'
   oidc:
